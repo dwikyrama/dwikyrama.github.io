@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8"/>
+  <title>LigaBola</title>
+  <meta name="description" content="PWA Info Sepakbola"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0d47a1"/>
+  <link rel="stylesheet" href="css/materialize.min.css">
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="/manifest.json">
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="apple-touch-icon" href="images/custom-icon-192.png">
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="./index.html" class="brand-logo" id="logo-container"><b><i>LigaBola</i></b></a>
+      <a href="#" class="sidenav-trigger" data-target="nav-mobile">
+          <i class="material-icons">menu</i>
+      </a>
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+  
+  <div class="container" id="body-content"></div>
+
+  <script src="js/materialize.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/nav.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/sw-reg.js"></script>
+  <script src="js/push-mgr.js"></script>
+  <script>
+    // REQUEST API UNTUK PERTAMA KALI
+    document.addEventListener("DOMContentLoaded", function() {
+      getStandings();
+    });
+  </script>
+</body>
+</html>

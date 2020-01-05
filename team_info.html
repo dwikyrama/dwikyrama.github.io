@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>LigaBola</title>
+  <meta name="description" content="PWA Info Sepakbola" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0d47a1" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="./index.html" class="brand-logo" id="logo-container"><b><i>LigaBola</i></b></a>
+      <a href="./index.html#team" class="sidenav-trigger" id="back-arrow" data-target="nav-mobile">
+        <i class="material-icons">arrow_back</i>
+      </a>
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+  <div class="container" id="body-content"></div>
+
+  <div class="fixed-action-btn">
+    <a class="btn-floating btn-large blue darken-4" id="save">
+      <i class="large material-icons">save</i>
+    </a>
+  </div>
+
+  <script src="js/materialize.min.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/sw-reg.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      registerServiceWorker();
+      
+      var urlParams = new URLSearchParams(window.location.search);
+      var isFromSaved = urlParams.get("saved");
+      var btnSave = document.getElementById("save");
+      var backArrow = document.getElementById("back-arrow");
+      
+      if (isFromSaved) {
+        // Hide fab jika dimuat dari indexed db
+        btnSave.style.display = 'none';
+        // ambil data team lalu tampilkan
+        getFavoriteTeamById();
+        // mengganti rujukan back-arrow ke saved page
+        backArrow.href = "./index.html#saved";
+      } else {
+        var item = getTeamById();
+      }
+
+      btnSave.onclick = function () {
+        M.toast({html: 'Favorite team saved!', classes: 'rounded', displayLength: 1500});
+        console.log(item);
+        item.then(function (team) {
+          saveTeam(team);
+        });
+        btnSave.className += " disabled";
+      };
+    });
+  </script>
+</body>
+
+</html>

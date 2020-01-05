@@ -1,0 +1,22 @@
+{
+    "name": "LigaBola",
+    "short_name": "LigaBola",
+    "gcm_sender_id": "713895810464",
+    "description": "PWA tentang info liga sepakbola",
+    "start_url": "/index.html",
+    "display": "standalone",
+    "background_color": "#0d47a1",
+    "theme_color": "#0d47a1",
+    "icons": [
+        {
+            "src": "images/icon-192.png",
+            "sizes": "192x192",
+            "type": "image/png"
+        },
+        {
+            "src": "images/icon-512.png",
+            "sizes": "512x512",
+            "type": "image/png"
+        }
+    ]
+}

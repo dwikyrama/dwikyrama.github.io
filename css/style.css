@@ -1,0 +1,70 @@
+.card .card-image img {
+    height: 225px;
+    width: auto;
+    padding-top: 35px;
+    margin: auto;
+}
+
+.team-info-img {
+    width: 100%;
+    max-width: 240px;
+    padding: 10px;
+    margin: auto;
+    display: flex;
+}
+
+.standing-img {
+    height: 2em;
+}
+
+table {
+    margin-bottom: 64px;
+}
+
+table.centered tbody tr td.align-left-td {
+    text-align: left;
+    max-width: 96px;
+}
+
+.btn {
+    width: 150px;
+}
+
+#last-updated {
+    font-size: 11px;
+}
+
+.btn-flat {
+    padding: 0 3px;
+}
+
+a.btn-flat:hover {
+    color:#0D47A1;
+}
+
+.sidenav {
+    padding-top: 30px;
+}
+
+@media only screen and (max-width: 480px) {
+    html { 
+        font-size: 0.8em;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+    .fixed-height {
+        height: 2.5em;
+        padding: 0;
+    }
+}
+
+@media only screen and (min-width: 992px) {
+    .standing-img {
+        margin-top: 8px;
+    }
+    
+    td {
+        padding: 10px 5px;
+    }
+}

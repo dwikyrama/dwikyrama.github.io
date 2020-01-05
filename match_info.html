@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <title>LigaBola</title>
+  <meta name="description" content="PWA Info Sepakbola" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="stylesheet" href="css/materialize.min.css" />
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="manifest" href="/manifest.json" />
+  <meta name="theme-color" content="#0d47a1" />
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+</head>
+
+<body>
+  <!-- Navigasi -->
+  <nav class="blue darken-4" role="navigation">
+    <div class="nav-wrapper container">
+      <a href="./index.html" class="brand-logo" id="logo-container"><b><i>LigaBola</i></b></a>
+      <a href="./index.html" class="sidenav-trigger" data-target="nav-mobile">
+        <i class="material-icons">arrow_back</i>
+      </a>
+      <ul class="topnav right hide-on-med-and-down"></ul>
+      <ul class="sidenav" id="nav-mobile"></ul>
+    </div>
+  </nav>
+  <!-- Akhir Navigasi -->
+  
+  <div class="container" id="body-content">
+    <h2>Matches</h2>
+    <p>Click the button below to change the matchday, and click the save button to save a match. Save button only appear for the upcoming matches.</p>
+    <div class="row valign-wrapper">
+      <div class="col s6">
+        <a class='dropdown-trigger btn blue darken-4' href='#' data-target='matchday-dropdown' id='dropdown-text'>Matchday</a>
+        <ul id='matchday-dropdown' class='dropdown-content'></ul>
+      </div>
+      <div class="col s6">
+        <p id="last-updated" class="right-align">Last updated</p>
+      </div>
+    </div>
+    <hr />
+    <table class="highlight responsive-table">
+      <thead>
+        <tr>
+          <th>Date</th>
+          <th>Time</th>
+          <th class="right-align">Home</th>
+          <th class="center-align">Score</th>
+          <th>Guest</th>
+          <th></th>
+        </tr>
+      </thead>
+  
+      <!-- Data tabel disisipkan ke dalam sini. -->
+      <tbody id="matches"></tbody>
+    </table>
+  </div>
+
+  <script src="js/materialize.min.js"></script>
+  <script src="js/idb.js"></script>
+  <script src="js/db.js"></script>
+  <script src="js/api.js"></script>
+  <script src="js/sw-reg.js"></script>
+  <script>
+    document.addEventListener("DOMContentLoaded", function () {
+      registerServiceWorker();
+      
+      // initialize dropdown
+      var elems = document.querySelectorAll('.dropdown-trigger');
+      var instances = M.Dropdown.init(elems);
+
+      var urlParams = new URLSearchParams(window.location.search);
+      var matchdayFilter = urlParams.get("matchday");
+      
+      if (matchdayFilter) {
+        getMatchesByDay();
+      } else {
+        getMatchday();
+      } getMatchdayDropdown();
+    });
+  </script>
+</body>
+
+</html>
